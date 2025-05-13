@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Challenge 5 - Steganography{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Challenge 5: Steganography</h2>
+        <span class="badge badge-info">Steganography</span>
+    </div>
+    <div class="card-body">
+        <p>Steganography is the practice of concealing messages or information within other non-secret data or a physical object.</p>
+        
+        <p>For this challenge, you need to find a hidden message in the image below.</p>
+        
+        <div class="hint-container mb-4">
+            <button class="btn btn-secondary hint-btn" data-challenge-id="5">Show Hint</button>
+            <div id="hint-5" class="mt-2 d-none"></div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Hidden Message</h4>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='images/stego.png') }}" alt="Steganography Image" class="img-fluid mb-3" style="max-width: 500px;">
+                
+                <div class="mt-3">
+                    <p>Examine this image carefully. The flag is hidden within.</p>
+                    <small class="text-muted">Tip: Sometimes what you see is not all there is.</small>
+                </div>
+                
+                <div class="mt-4">
+                    <button id="reveal-stego" class="btn btn-secondary">Reveal Hidden Text</button>
+                    <div id="stego-result" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <h4>Flag Submission</h4>
+        <form id="flag-form" data-challenge-id="5">
+            <div class="form-group">
+                <label for="flag-input">Enter the flag:</label>
+                <input type="text" id="flag-input" name="flag" class="form-control" placeholder="Format: Flag text with no spaces" {{ 'disabled' if completed }}>
+            </div>
+            <button type="submit" id="submit-flag" class="btn btn-primary" {{ 'disabled' if completed }}>
+                {{ 'Completed' if completed else 'Submit Flag' }}
+            </button>
+            <p class="mt-2">Attempts: <span id="attempts-count">{{ attempts }}</span></p>
+        </form>
+        
+        <div id="flag-result" class="mt-3">
+            {% if completed %}
+            <div class="alert alert-success">Challenge completed!</div>
+            <a href="{{ url_for('challenges.view', challenge_id=6) }}" class="btn btn-primary mt-2">Next Challenge</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const revealBtn = document.getElementById('reveal-stego');
+        const stegoResult = document.getElementById('stego-result');
+        
+        revealBtn.addEventListener('click', function() {
+            // Simulating steganography extraction
+            // In a real CTF, this would be an actual steganography challenge
+            stegoResult.innerHTML = '<div class="alert alert-success">Hidden text extracted: "SteganographyImageFlag"</div>';
+        });
+    });
+</script>
+{% endblock %}
+
+{% endblock %}
