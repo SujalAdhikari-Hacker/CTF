@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}CyberSentinels CTF - Home{% endblock %}
+
+{% block content %}
+<div class="hero slide-in-up">
+    <h1 class="hero-title">Welcome to CyberSentinels CTF</h1>
+    <p class="hero-subtitle">A beginner-friendly capture the flag challenge</p>
+    <div class="d-flex justify-content-center">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('challenges.index') }}" class="btn btn-primary mr-2">Start Challenges</a>
+            <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">My Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary mr-2">Register</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Login</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h2>About This CTF</h2>
+        </div>
+        <div class="card-body">
+            <p>This CTF is designed for beginners who want to learn cybersecurity concepts in a fun, hands-on way. The challenges progress in difficulty, teaching you valuable skills along the way.</p>
+            
+            <div class="terminal mb-4">
+                <div class="terminal-header">
+                    <div class="terminal-button terminal-button-red"></div>
+                    <div class="terminal-button terminal-button-yellow"></div>
+                    <div class="terminal-button terminal-button-green"></div>
+                    <div class="terminal-title">cybersecurity@kali:~</div>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-animation" data-text="sudo python3 ctf_machine.py" data-speed="70"></span>
+                    </div>
+                    <div class="terminal-line mt-2">
+                        <span class="terminal-prompt">#</span> CyberSentinels CTF v1.0 initialized
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">#</span> Created by {{ config.AUTHOR_NAME }}
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">#</span> 10 challenges loaded successfully
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">#</span> Server running at http://localhost:5000
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">#</span> <span class="pulse">Ready for hackers...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Challenge Categories</h3>
+            <ul>
+                <li>Hidden HTML comments</li>
+                <li>Brute force attacks</li>
+                <li>Cryptography puzzles</li>
+                <li>Cross-site scripting (XSS)</li>
+                <li>Steganography</li>
+                <li>Base64 encoding</li>
+                <li>Obfuscation techniques</li>
+                <li>URL manipulation</li>
+                <li>And more!</li>
+            </ul>
+            
+            <p class="mt-4">Join our Discord community for tips, hints, and discussions with other CTF participants!</p>
+            <a href="{{ config.DISCORD_LINK }}" target="_blank" class="btn btn-primary">Join Discord</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h2>Why Practice CTF?</h2>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-wrap">
+                <div class="w-100 mb-4">
+                    <h4>Build Essential Skills</h4>
+                    <p>CTFs are designed to help you develop practical cybersecurity skills in a safe, legal environment. You'll learn techniques used by both attackers and defenders in real-world scenarios.</p>
+                </div>
+                
+                <div class="w-100 mb-4">
+                    <h4>Hands-on Learning</h4>
+                    <p>Reading about security is one thing; doing it is another. CTFs give you hands-on experience with tools and techniques that can't be learned from books alone.</p>
+                </div>
+                
+                <div class="w-100 mb-4">
+                    <h4>Career Development</h4>
+                    <p>Many employers look for CTF experience on resumes. It demonstrates initiative, problem-solving abilities, and practical skills that are valuable in cybersecurity roles.</p>
+                </div>
+                
+                <div class="w-100">
+                    <h4>Community</h4>
+                    <p>Join a global community of security enthusiasts. Share knowledge, learn from others, and make connections in the cybersecurity field.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
